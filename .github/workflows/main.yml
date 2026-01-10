@@ -1,0 +1,17 @@
+name: My-First-Workflow # workflow name
+on: workflow_dispatch #event name, also we could give multiple events in array []
+jobs: #set of task/steps
+  my-first-job: # name of our job
+    runs-on: ubuntu-latest
+    steps: # in that job we could define multiple steps
+      - name: Print the working directory
+        run: pwd
+
+      - name: Create JS File
+        run: echo `console.log("Hello World")` > app.JS
+
+      - name: Run Nodejs File
+        run: node app.js
+
+      - name: List all files
+        run: ls -a
