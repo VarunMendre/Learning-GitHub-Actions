@@ -1,17 +1,40 @@
 name: My-First-Workflow # workflow name
-on: workflow_dispatch #event name, also we could give multiple events in array []
-jobs: #set of task/steps
+
+on: workflow_dispatch # event name, also we could give multiple events in array []
+
+jobs: # set of task/steps
   my-first-job: # name of our job
     runs-on: ubuntu-latest
+
     steps: # in that job we could define multiple steps
       - name: Print the working directory
         run: pwd
 
       - name: Create JS File
-        run: echo `console.log("Hello World")` > app.js
+        run: echo 'console.log("Hello World")' > app.js
 
       - name: Run Nodejs File
         run: node app.js
 
       - name: List all files
         run: ls -a
+
+      - name: See System configuration
+        run: |
+          echo "===== OS INFO ====="
+          lsb_release -a || cat /etc/os-release
+
+          echo "===== KERNEL INFO ====="
+          uname -a
+
+          echo "===== CPU INFO ====="
+          lscpu
+
+          echo "===== MEMORY INFO ====="
+          free -h
+
+          echo "===== DISK INFO ====="
+          df -h
+
+          echo "===== BLOCK DEVICES ====="
+          lsblk
