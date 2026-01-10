@@ -18,7 +18,10 @@ jobs: # set of task/steps
 
       - name: List all files
         run: ls -a
+  my-second-job:
+     runs-on: ubuntu-latest
 
+     steps:
       - name: See System configuration
         run: |
           echo "===== OS INFO ====="
