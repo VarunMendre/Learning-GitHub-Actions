@@ -1,6 +1,6 @@
 name: My-First-Workflow # workflow name
 
-on: [push] # event name, also we could give multiple events in array []
+on: [push,workflow_dispatch] # event name, also we could give multiple events in array []
 
 jobs: # set of task/steps
   my-first-job: # name of our job
