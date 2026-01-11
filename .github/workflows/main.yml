@@ -16,3 +16,20 @@ jobs:
 
       - name: Print Workflow file content
         run: cat ./.github/workflows/main.yml
+
+  my-second-job:
+   runs-on: ubuntu-latest
+
+   steps: 
+    - name: Node Version before
+      run: node --version
+
+    - name: Setting up Node Env
+      uses: actions/setup-node@v6
+      with: 
+        node-version: 24
+    
+    - name: Node Version after
+      run: node --version
+
+
