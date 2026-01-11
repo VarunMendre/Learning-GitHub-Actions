@@ -2,12 +2,15 @@ name: My-First-Workflow
 on: [push,workflow_dispatch]
 jobs: 
   my-first-job:
-    runs-on: ubuntu-latest
+    env: 
+      JWT_SECRET_KEY: "varun0404~*!&@^#%$"
+      AWS_ACCESS_KEY: "EXCASTOVXS"
 
+    runs-on: ubuntu-latest
+    
     steps:
-      - run: echo "${{toJson(github.actor)}} "
       - run: echo "${{toJson(env)}} "
       - run: echo "${{toJson(secrets)}} "
-      - run: echo "${{toJson(runner.os)}} "
+      - run: echo "${{toJson(runner)}} "
 
 
