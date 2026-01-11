@@ -1,16 +1,55 @@
-name: My-First-Workflow
-on: [push,workflow_dispatch]
-jobs: 
-  my-first-job:
-    env: 
-      JWT_SECRET_KEY: "My jwt secret"
-      AWS_ACCESS_KEY: "This is my key "
+name: Context Objects Demo
 
+on: [push]
+
+env:
+  APP_NAME: ContextDemoApp   # env context example
+
+jobs:
+  demo:
     runs-on: ubuntu-latest
-    
+
+    environment: production   # enables vars & secrets from environment
+
     steps:
-      - run: echo "${{toJson(env)}} "
-      - run: echo "${{toJson(secrets)}} "
-      - run: echo "${{toJson(runner)}} "
 
+      # 1️⃣ github context
+      - name: GitHub Context Example
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch Name: ${{ github.ref_name }}"
+          echo "Event Name: ${{ github.event_name }}"
+          echo "Triggered By: ${{ github.actor }}"
 
+      # 2️⃣ env context
+      - name: ENV Context Example
+        run: |
+          echo "Application Name: ${{ env.APP_NAME }}"
+
+      # 3️⃣ vars context (Repo / Environment Variable)
+      - name: VARS Context Example
+        run: |
+          echo "API URL from vars: ${{ vars.API_URL }}"
+
+      # 4️⃣ secrets context
+      - name: SECRETS Context Example
+        run: |
+          echo "Secret value is masked:"
+          echo "${{ secrets.MY_SECRET_KEY }}"
+
+      # 5️⃣ runner context
+      - name: RUNNER Context Example
+        run: |
+          echo "Runner OS: ${{ runner.os }}"
+          echo "Runner Architecture: ${{ runner.arch }}"
+
+      # 6️⃣ steps context (create output)
+      - name: Create Step Output
+        id: step_output
+        run: |
+          echo "message=Hello from previous step" >> $GITHUB_OUTPUT
+
+      # 7️⃣ steps context (read output)
+      - name: Read Step Output
+        run: |
+          echo "Output message: ${{ steps.step_output.outputs.message }}"
