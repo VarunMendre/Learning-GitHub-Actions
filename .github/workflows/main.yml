@@ -5,6 +5,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo ${{10 != 11 }} 
+      - run: echo ${{10 != 11 && 11 > 10 }} 
 
 
