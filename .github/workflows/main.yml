@@ -5,10 +5,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "${{toJson(github)}} "
+      - run: echo "${{toJson(github.actor)}} "
       - run: echo "${{toJson(env)}} "
       - run: echo "${{toJson(secrets)}} "
-      - run: echo "${{toJson(secrets)}} "
-      - run: echo "${{toJson(runner)}} "
+      - run: echo "${{toJson(runner.os)}} "
 
 
